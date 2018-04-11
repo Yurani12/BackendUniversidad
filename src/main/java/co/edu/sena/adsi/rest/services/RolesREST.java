@@ -35,7 +35,7 @@ public class RolesREST {
     @GET
     @Path("{id}")
     public Roles findBye(
-    @PathParam("id")String id){
+    @PathParam("id")Integer id){
         return rolesEJB.find(id);
     
 }

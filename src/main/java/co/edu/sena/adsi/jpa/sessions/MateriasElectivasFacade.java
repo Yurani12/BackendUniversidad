@@ -6,9 +6,16 @@
 package co.edu.sena.adsi.jpa.sessions;
 
 import co.edu.sena.adsi.jpa.entities.MateriasElectivas;
+import co.edu.sena.adsi.jpa.entities.MateriasElectivas_;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -27,6 +34,28 @@ public class MateriasElectivasFacade extends AbstractFacade<MateriasElectivas> {
 
     public MateriasElectivasFacade() {
         super(MateriasElectivas.class);
+    }
+    
+    /**
+     * Busca materia por nombre
+     *
+     * @param nombre
+     * @return MateriasElectivas
+     */
+    public MateriasElectivas findUsuarioByNombre (String Nombre) {
+
+        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<MateriasElectivas> cq = cb.createQuery(MateriasElectivas.class);
+        Root<MateriasElectivas> usuario = cq.from(MateriasElectivas.class);
+        cq.where(cb.equal(usuario.get(MateriasElectivas_.nombre), Nombre));
+        TypedQuery<MateriasElectivas> q = getEntityManager().createQuery(cq);
+        try {
+            return (MateriasElectivas) q.getSingleResult();
+        } catch (NonUniqueResultException ex) {
+            throw ex;
+        } catch (NoResultException ex) {
+            return null;
+        }
     }
     
 }

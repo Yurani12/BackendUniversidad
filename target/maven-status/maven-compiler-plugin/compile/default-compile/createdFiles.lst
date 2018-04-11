@@ -1,6 +1,14 @@
+co/edu/sena/adsi/rest/services/MateriasElectivasREST.class
+co/edu/sena/adsi/rest/services/AppConfig.class
+co/edu/sena/adsi/jpa/entities/Usuarios.class
+co/edu/sena/adsi/jpa/sessions/RolesFacade.class
+co/edu/sena/adsi/rest/services/RolesREST.class
+co/edu/sena/adsi/rest/services/UsuariosREST.class
 co/edu/sena/adsi/jpa/entities/Usuarios_.class
 co/edu/sena/adsi/jpa/entities/Roles.class
-co/edu/sena/adsi/jpa/entities/Usuarios.class
+co/edu/sena/adsi/jpa/sessions/AbstractFacade.class
 co/edu/sena/adsi/jpa/entities/MateriasElectivas.class
 co/edu/sena/adsi/jpa/entities/MateriasElectivas_.class
+co/edu/sena/adsi/jpa/sessions/MateriasElectivasFacade.class
 co/edu/sena/adsi/jpa/entities/Roles_.class
+co/edu/sena/adsi/jpa/sessions/UsuariosFacade.class

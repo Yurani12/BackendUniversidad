@@ -1,3 +1,11 @@
-/home/yurani/NetBeansProjects/Universidad/src/main/java/co/edu/sena/adsi/jpa/entities/MateriasElectivas.java
-/home/yurani/NetBeansProjects/Universidad/src/main/java/co/edu/sena/adsi/jpa/entities/Roles.java
-/home/yurani/NetBeansProjects/Universidad/src/main/java/co/edu/sena/adsi/jpa/entities/Usuarios.java
+/home/adsi1261718/NetBeansProjects/BackendUniversidad/src/main/java/co/edu/sena/adsi/rest/services/MateriasElectivasREST.java
+/home/adsi1261718/NetBeansProjects/BackendUniversidad/src/main/java/co/edu/sena/adsi/rest/services/RolesREST.java
+/home/adsi1261718/NetBeansProjects/BackendUniversidad/src/main/java/co/edu/sena/adsi/jpa/entities/Usuarios.java
+/home/adsi1261718/NetBeansProjects/BackendUniversidad/src/main/java/co/edu/sena/adsi/rest/services/UsuariosREST.java
+/home/adsi1261718/NetBeansProjects/BackendUniversidad/src/main/java/co/edu/sena/adsi/jpa/sessions/UsuariosFacade.java
+/home/adsi1261718/NetBeansProjects/BackendUniversidad/src/main/java/co/edu/sena/adsi/jpa/sessions/MateriasElectivasFacade.java
+/home/adsi1261718/NetBeansProjects/BackendUniversidad/src/main/java/co/edu/sena/adsi/jpa/sessions/AbstractFacade.java
+/home/adsi1261718/NetBeansProjects/BackendUniversidad/src/main/java/co/edu/sena/adsi/jpa/sessions/RolesFacade.java
+/home/adsi1261718/NetBeansProjects/BackendUniversidad/src/main/java/co/edu/sena/adsi/jpa/entities/Roles.java
+/home/adsi1261718/NetBeansProjects/BackendUniversidad/src/main/java/co/edu/sena/adsi/jpa/entities/MateriasElectivas.java
+/home/adsi1261718/NetBeansProjects/BackendUniversidad/src/main/java/co/edu/sena/adsi/rest/services/AppConfig.java
