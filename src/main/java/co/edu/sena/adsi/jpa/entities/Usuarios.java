@@ -79,7 +79,7 @@ public class Usuarios implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
-    @Column(name = "contrase\u00f1a")
+    @Column(name = "contraseña")
     private String contraseña;
     @Size(max = 45)
     @Column(name = "direccion")

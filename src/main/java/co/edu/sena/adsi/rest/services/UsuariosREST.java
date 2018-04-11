@@ -7,6 +7,7 @@ package co.edu.sena.adsi.rest.services;
 
 import co.edu.sena.adsi.jpa.entities.Usuarios;
 import co.edu.sena.adsi.jpa.sessions.UsuariosFacade;
+import co.edu.sena.adsi.rest.auth.DigestUtil;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.util.List;
@@ -50,7 +51,7 @@ public class UsuariosREST {
         Gson gson = gsonBuilder.create();
         try {
             if (usuariosEJB.findUsuarioByDocumento(usuario.getDocumento()) == null) {
-
+                usuario.setContraseña(DigestUtil.cifrarContraseña(usuario.getContraseña()));
                 if (usuariosEJB.findUsuarioByEmail(usuario.getEmail()) == null) {
                     usuario.setEstado(Boolean.TRUE);
                     usuariosEJB.create(usuario);
