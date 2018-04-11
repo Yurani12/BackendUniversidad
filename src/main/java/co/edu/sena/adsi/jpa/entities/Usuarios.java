@@ -105,9 +105,6 @@ public class Usuarios implements Serializable {
     private List<MateriasElectivas> materiasElectivasList;
     */
       
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProfesor")
-    private List<MateriasElectivas> materiasElectivasList1;
-
     public Usuarios() {
     }
 
@@ -195,7 +192,7 @@ public class Usuarios implements Serializable {
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
-
+    
     @XmlTransient
     public List<Roles> getRolesList() {
         return rolesList;
@@ -212,15 +209,6 @@ public class Usuarios implements Serializable {
 
     public void setMateriasElectivasList(List<MateriasElectivas> materiasElectivasList) {
         this.materiasElectivasList = materiasElectivasList;
-    }
-
-    @XmlTransient
-    public List<MateriasElectivas> getMateriasElectivasList1() {
-        return materiasElectivasList1;
-    }
-
-    public void setMateriasElectivasList1(List<MateriasElectivas> materiasElectivasList1) {
-        this.materiasElectivasList1 = materiasElectivasList1;
     }
 
     @Override

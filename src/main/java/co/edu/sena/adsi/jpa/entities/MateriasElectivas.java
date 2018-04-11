@@ -59,6 +59,12 @@ public class MateriasElectivas implements Serializable {
     @Column(name = "cupos")
     private int cupos;
     
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "profesor")
+    private String profesor;
+    
     /*@JoinTable(name = "usuarios_materias", joinColumns = {
         @JoinColumn(name = "id_materias_electivas", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "id_usuarios", referencedColumnName = "id")})
@@ -67,10 +73,6 @@ public class MateriasElectivas implements Serializable {
     
     @ManyToMany(mappedBy = "materiasElectivasList")
     private List<Usuarios> usuariosList;
-    
-    @JoinColumn(name = "id_profesor", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Usuarios idProfesor;
 
     public MateriasElectivas() {
     }
@@ -126,14 +128,15 @@ public class MateriasElectivas implements Serializable {
         this.usuariosList = usuariosList;
     }
 
-    public Usuarios getIdProfesor() {
-        return idProfesor;
+    public String getProfesor() {
+        return profesor;
     }
 
-    public void setIdProfesor(Usuarios idProfesor) {
-        this.idProfesor = idProfesor;
+    public void setProfesor(String profesor) {
+        this.profesor = profesor;
     }
 
+    
     @Override
     public int hashCode() {
         int hash = 0;
