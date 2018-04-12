@@ -107,4 +107,22 @@ public class UsuariosFacade extends AbstractFacade<Usuarios> {
             return null;
         }
     }
+    
+        public List<Usuarios> findAllUsuariosByProfesor(String roles) {
+
+        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<Usuarios> cq = cb.createQuery(Usuarios.class);
+        Root<Roles> rootRoles = cq.from(Roles.class);
+        cq.where(cb.equal(rootRoles.get(Roles_.id), roles));
+        ListJoin<Roles, Usuarios> joinRol = rootRoles.join(Roles_.usuariosList);
+        CriteriaQuery<Usuarios> cqq = cq.select(joinRol);
+
+        TypedQuery<Usuarios> q = getEntityManager().createQuery(cq);
+        try {
+            return q.getResultList();
+
+        } catch (NoResultException ex) {
+            return null;
+        }
+    }
 }

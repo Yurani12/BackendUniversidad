@@ -41,7 +41,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Usuarios.findByApellidos", query = "SELECT u FROM Usuarios u WHERE u.apellidos = :apellidos")
     , @NamedQuery(name = "Usuarios.findByEmail", query = "SELECT u FROM Usuarios u WHERE u.email = :email")
     , @NamedQuery(name = "Usuarios.findByDocumento", query = "SELECT u FROM Usuarios u WHERE u.documento = :documento")
-    , @NamedQuery(name = "Usuarios.findByContrase\u00f1a", query = "SELECT u FROM Usuarios u WHERE u.contrase\u00f1a = :contrase\u00f1a")
+    , @NamedQuery(name = "Usuarios.findByPassword", query = "SELECT u FROM Usuarios u WHERE u.password = :password")
     , @NamedQuery(name = "Usuarios.findByDireccion", query = "SELECT u FROM Usuarios u WHERE u.direccion = :direccion")
     , @NamedQuery(name = "Usuarios.findByEstado", query = "SELECT u FROM Usuarios u WHERE u.estado = :estado")})
 public class Usuarios implements Serializable {
@@ -76,14 +76,17 @@ public class Usuarios implements Serializable {
     @Size(min = 1, max = 11)
     @Column(name = "documento")
     private String documento;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
-    @Column(name = "contraseña")
-    private String contraseña;
+    @Column(name = "password")
+    private String password;
+    
     @Size(max = 45)
     @Column(name = "direccion")
     private String direccion;
+    
     @Column(name = "estado")
     private Boolean estado;
     
@@ -112,13 +115,13 @@ public class Usuarios implements Serializable {
         this.id = id;
     }
 
-    public Usuarios(Integer id, String nombres, String apellidos, String email, String documento, String contraseña) {
+    public Usuarios(Integer id, String nombres, String apellidos, String email, String documento, String password) {
         this.id = id;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.email = email;
         this.documento = documento;
-        this.contraseña = contraseña;
+        this.password = password;
     }
 
     public Integer getId() {
@@ -169,12 +172,12 @@ public class Usuarios implements Serializable {
         this.documento = documento;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getPassword() {
+        return password;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getDireccion() {

@@ -42,7 +42,7 @@ public class DigestUtil {
         }
     }
 
-    public static String cifrarContraseña(String pass) {
+    public static String cifrarPassword(String pass) {
         String passCifrada = null;
         try {
             passCifrada = generateDigest(pass);

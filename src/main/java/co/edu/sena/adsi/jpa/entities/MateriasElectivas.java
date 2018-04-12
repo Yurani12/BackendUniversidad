@@ -58,13 +58,7 @@ public class MateriasElectivas implements Serializable {
     @NotNull
     @Column(name = "cupos")
     private int cupos;
-    
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "profesor")
-    private String profesor;
-    
+     
     /*@JoinTable(name = "usuarios_materias", joinColumns = {
         @JoinColumn(name = "id_materias_electivas", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "id_usuarios", referencedColumnName = "id")})
@@ -127,15 +121,6 @@ public class MateriasElectivas implements Serializable {
     public void setUsuariosList(List<Usuarios> usuariosList) {
         this.usuariosList = usuariosList;
     }
-
-    public String getProfesor() {
-        return profesor;
-    }
-
-    public void setProfesor(String profesor) {
-        this.profesor = profesor;
-    }
-
     
     @Override
     public int hashCode() {

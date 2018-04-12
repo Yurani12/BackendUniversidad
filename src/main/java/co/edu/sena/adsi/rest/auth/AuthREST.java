@@ -45,10 +45,10 @@ public class AuthREST {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
         foundUser = usuariosEJB.findUsuarioByEmail(usuarios.getEmail());
-        usuarios.setContraseña(DigestUtil.cifrarContraseña(usuarios.getContraseña()));
+        usuarios.setPassword(DigestUtil.cifrarPassword(usuarios.getPassword()));
         if (foundUser == null) {
             return Response.status(Status.UNAUTHORIZED).entity(gson.toJson(NOT_FOUND_MSG)).build();
-        } else if (usuarios.getContraseña().equals(foundUser.getContraseña())) {
+        } else if (usuarios.getPassword().equals(foundUser.getPassword())) {
             if (foundUser.getEstado()) {
                 System.out.println("DATOS OK");
                 final Token token = AuthUtils.createToken(request.getRemoteHost(), foundUser);

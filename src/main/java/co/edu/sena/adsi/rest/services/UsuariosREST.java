@@ -56,7 +56,7 @@ public class UsuariosREST {
     public List<Usuarios> findAllUsuariosByRol() {
         return usuariosEJB.findAllUsuariosByRol("E");
     }
-    
+
      /***
      * 
      * Obtiene todos los usuarios con rol administrador
@@ -65,8 +65,21 @@ public class UsuariosREST {
     
     @GET
     @Path("adminstrador")
-    public List<Usuarios> finAllUsuariosByrol(){
+    public List<Usuarios> finAllUsuariosByRol(){
         return usuariosEJB.findAllUsuariosByRol("A");
+    }
+    
+    
+          
+    /**
+     * Obtiene todos los usuarios con rol ESTUDIANTE
+     *
+     * @return lista de Profesores
+     */
+    @GET
+    @Path("profesor")
+    public List<Usuarios> finAllUsuariosByProfesor(){
+        return usuariosEJB.findAllUsuariosByProfesor("P");
     }
     
     @GET
@@ -85,7 +98,7 @@ public class UsuariosREST {
         Gson gson = gsonBuilder.create();
         try {
             if (usuariosEJB.findUsuarioByDocumento(usuario.getDocumento()) == null) {
-                usuario.setContraseña(DigestUtil.cifrarContraseña(usuario.getContraseña()));
+                usuario.setPassword(DigestUtil.cifrarPassword(usuario.getPassword()));
                 if (usuariosEJB.findUsuarioByEmail(usuario.getEmail()) == null) {
                     usuario.setEstado(Boolean.TRUE);
                     usuariosEJB.create(usuario);
@@ -117,7 +130,7 @@ public class UsuariosREST {
             if (usuariosEJB.findUsuarioByEmail(usuarios.getEmail()) == null) {
                 if (usuariosEJB.findUsuarioByDocumento(usuarios.getDocumento()) == null) {
                     
-                    usuarios.setContraseña(DigestUtil.cifrarContraseña(usuarios.getContraseña()));
+                    usuarios.setPassword(DigestUtil.cifrarPassword(usuarios.getPassword()));
                     usuarios.setRolesList(new ArrayList<Roles>());
                     usuarios.getRolesList().add(new Roles("A"));
                     usuariosEJB.create(usuarios);
@@ -151,7 +164,7 @@ public class UsuariosREST {
             if (usuariosEJB.findUsuarioByEmail(usuarios.getEmail()) == null) {
                 if (usuariosEJB.findUsuarioByDocumento(usuarios.getDocumento()) == null) {
                     
-                    usuarios.setContraseña(DigestUtil.cifrarContraseña(usuarios.getContraseña()));
+                    usuarios.setPassword(DigestUtil.cifrarPassword(usuarios.getPassword()));
                     usuarios.setRolesList(new ArrayList<Roles>());
                     usuarios.getRolesList().add(new Roles("E"));
                     usuariosEJB.create(usuarios);
@@ -167,6 +180,41 @@ public class UsuariosREST {
         } catch (Exception e) {
             Logger.getLogger(UsuariosREST.class.getName()).log(Level.SEVERE, null, e);
             return Response.status(Response.Status.BAD_REQUEST).entity(gson.toJson("Error al crear el estudiante!.")).build();
+        }
+    }
+    
+    
+    
+      /**
+     * Crea profesor
+     * @param usuarios
+     * @return 
+      */
+    @POST
+    @Path("profesor")
+    public Response createProfesor(Usuarios usuarios) {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        Gson gson = gsonBuilder.create();
+        try {
+            if (usuariosEJB.findUsuarioByEmail(usuarios.getEmail()) == null) {
+                if (usuariosEJB.findUsuarioByDocumento(usuarios.getDocumento()) == null) {
+                    
+                    usuarios.setPassword(DigestUtil.cifrarPassword(usuarios.getPassword()));
+                    usuarios.setRolesList(new ArrayList<Roles>());
+                    usuarios.getRolesList().add(new Roles("P"));
+                    usuariosEJB.create(usuarios);
+                    return Response.status(Response.Status.CREATED).entity(gson.toJson("El Profesor se registro correctamente!")).build();
+
+                
+                } else {
+                    return Response.status(Response.Status.BAD_REQUEST).entity(gson.toJson("El número de documento ya se encuentra registrado!.")).build();
+                }
+           } else {
+                return Response.status(Response.Status.BAD_REQUEST).entity(gson.toJson("El email ya se encuentra registrado!.")).build();
+            }
+        } catch (Exception e) {
+            Logger.getLogger(UsuariosREST.class.getName()).log(Level.SEVERE, null, e);
+            return Response.status(Response.Status.BAD_REQUEST).entity(gson.toJson("Error al crear el Profesor!.")).build();
         }
     }
     
