@@ -14,12 +14,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -43,15 +45,7 @@ public class MateriasElectivasREST {
     @Path("{id}")
     public MateriasElectivas findBye(@PathParam("id")Integer id){
         return materiasElectivasEJB.find(id);
-        /*
         
-    @GET
-    @Path("{id}")
-    public Estudiantes findById(@PathParam("id") Integer id){
-        return estudiantesEJB.find(id);
-    }
-        */
-    
 }
     @POST
     public Response create(MateriasElectivas materiasElectivas){
@@ -90,4 +84,33 @@ public class MateriasElectivasREST {
         }
     }
     
+    /* @DELETE
+    public Response salir(
+            @QueryParam("id")Integer id,
+            @QueryParam("cupos") int cupos) {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        Gson gson = gsonBuilder.create();
+        try {
+            MateriasElectivas materiasElectivas = materiasElectivasFacade.find(id);
+            Usuarios usuarios = usuariosEJB.find(id_usuarios);
+            if (carro == null) {
+                return Response.status(Response.Status.BAD_REQUEST).entity(gson.toJson("No se ha encontrado el carro con placa " + placa)).build();
+            } else if (horaSalida <= carro.getHoraLlegada()) {
+                return Response.status(Response.Status.BAD_REQUEST).entity(gson.toJson("la hora de salida no puede ser menor o igual a " + carro.getHoraLlegada())).build();
+            } else {
+                Puestos puesto = carro.getPuestos();
+                puesto.setPlacaCarro(null);
+                double pago = parqueadero.getTarifa() * (horaSalida - carro.getHoraLlegada());
+                parqueadero.setCaja(parqueadero.getCaja() + pago);
+                parqueaderoEJB.edit(parqueadero);
+                puestoEJB.edit(puesto);
+                carrosFacade.remove(carro);
+                return Response.status(Response.Status.OK).entity(gson.toJson("Valor a pagar: " + pago)).build();
+            }
+        } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage());
+            return Response.status(Response.Status.BAD_REQUEST).entity(gson.toJson("Error: " + e)).build();
+        }
+ 
+}*/
 }
